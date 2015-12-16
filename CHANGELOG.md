@@ -57,6 +57,7 @@
 * [#1545](https://github.com/bbatsov/rubocop/issues/1545): New `Regex` config parameter for `Style/FileName` allows user to provide their own regex for validating file names. ([@alexdowad][])
 * [#2253](https://github.com/bbatsov/rubocop/issues/2253): New `DefaultFormatter` config parameter can be used to set formatter from within .rubocop.yml. ([@alexdowad][])
 * [#2481](https://github.com/bbatsov/rubocop/issues/2481): New `WorstOffendersFormatter` prints a list of files with offenses (and offense counts), showing the files with the most offenses first. ([@alexdowad][])
+* New cop `Style/FrozenStringLiteralComment` will check for and add the comment `# frozen_string_literal: true` to the top of files. This will help with upgrading to Ruby 3.0. ([@rrosenblum][])
 
 ### Bug Fixes
 

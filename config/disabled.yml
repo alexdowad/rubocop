@@ -47,6 +47,12 @@ Style/FirstMethodParameterLineBreak:
                  multi-line method parameter definition.
   Enabled: false
 
+Style/FrozenStringLiteralComment:
+  Description: >-
+                 Add the frozen_string_literal comment to the top of files
+                 to help transistion from Ruby 2.3.0 to Ruby 3.0
+  Enabled: false
+
 Style/InlineComment:
   Description: 'Avoid inline comments.'
   Enabled: false

@@ -468,6 +468,16 @@ Style/FormatString:
     - sprintf
     - percent
 
+Style/FrozenStringLiteralComment:
+  TargetRubyVersion: 2.3
+  EnforcedStyle: always
+  SupportedStyles:
+    # `when_needed` will add the frozen string literal comment to files that call
+    # `freeze` or `<<` on a string literal.
+    - when_needed
+    # `always` will always add the frozen string literal comment to a file.
+    - always
+
 # Built-in global variables are allowed by default.
 Style/GlobalVars:
   AllowedVariables: []
