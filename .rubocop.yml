@@ -11,5 +11,4 @@ Style/Encoding:
   Enabled: true
 
 Style/FrozenStringLiteralComment:
-  EnforcedStyle: when_needed
   Enabled: true
