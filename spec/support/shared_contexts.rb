@@ -80,3 +80,10 @@ shared_context 'ruby 2.2', :ruby22 do
     super().tap { |hash| hash['AllCops'] = { 'TargetRubyVersion' => 2.2 } }
   end
 end
+
+shared_context 'ruby 2.3', :ruby23 do
+  let(:ruby_version) { 2.3 }
+  let(:config) do
+    super().tap { |hash| hash['AllCops'] = { 'TargetRubyVersion' => 2.3 } }
+  end
+end

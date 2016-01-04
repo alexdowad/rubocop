@@ -21,7 +21,7 @@ module RuboCop
                                             (send {dstr str} :freeze)}'
 
         def investigate(processed_source)
-          return if ruby_version < 2.3
+          return if target_ruby_version < 2.3
           return unless style == :always
           return if processed_source.buffer.source.empty?
 
@@ -31,15 +31,11 @@ module RuboCop
         end
 
         def on_send(node)
-          return if ruby_version < 2.3
+          return if target_ruby_version < 2.3
           return unless style == :when_needed
           return if frozen_string_literal_comment_exists?(processed_source)
 
           frozen_strings(node) { offense(processed_source) }
-        end
-
-        def ruby_version
-          @ruby_version ||= RUBY_VERSION[0..2].to_f
         end
 
         def autocorrect(_node)
@@ -53,10 +49,6 @@ module RuboCop
                                      "\n#{FROZEN_STRING_LITERAL_ENABLED}")
             end
           end
-        end
-
-        def target_ruby_version
-          cop_config['TargetRubyVersion']
         end
 
         def validate_config

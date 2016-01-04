@@ -6,14 +6,13 @@ require 'spec_helper'
 describe RuboCop::Cop::Style::FrozenStringLiteralComment, :config do
   subject(:cop) { described_class.new(config) }
 
-  context 'always' do
-    let(:config) do
-      RuboCop::Config.new('Style/FrozenStringLiteralComment' => {
-                            'TargetRubyVersion' => 2.3,
-                            'Enabled'           => true,
-                            'EnforcedStyle'     => 'always',
-                            'SupportedStyles'   => %w(always when_needed)
-                          })
+  context 'always', :ruby23 do
+    let(:cop_config) do
+      {
+        'Enabled'           => true,
+        'EnforcedStyle'     => 'always',
+        'SupportedStyles'   => %w(always when_needed)
+      }
     end
 
     it 'accepts an empty source' do
@@ -207,14 +206,13 @@ describe RuboCop::Cop::Style::FrozenStringLiteralComment, :config do
     end
   end
 
-  context 'when_needed' do
-    let(:config) do
-      RuboCop::Config.new('Style/FrozenStringLiteralComment' => {
-                            'TargetRubyVersion' => 2.3,
-                            'Enabled'           => true,
-                            'EnforcedStyle'     => 'when_needed',
-                            'SupportedStyles'   => %w(always when_needed)
-                          })
+  context 'when_needed', :ruby23 do
+    let(:cop_config) do
+      {
+        'Enabled'           => true,
+        'EnforcedStyle'     => 'when_needed',
+        'SupportedStyles'   => %w(always when_needed)
+      }
     end
 
     it 'accepts an empty source' do
@@ -223,7 +221,7 @@ describe RuboCop::Cop::Style::FrozenStringLiteralComment, :config do
       expect(cop.offenses).to be_empty
     end
 
-    context 'ruby >= 2.3', :ruby23 do
+    context 'ruby >= 2.3' do
       context 'no frozen string literal comment' do
         it 'accepts not modifing a string' do
           inspect_source(cop, 'puts "x"')
