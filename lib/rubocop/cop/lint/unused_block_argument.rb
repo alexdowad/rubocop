@@ -31,12 +31,12 @@ module RuboCop
 
           return message if variable.explicit_block_local_variable?
 
-          message << ' '
+          message += ' '
 
           scope = variable.scope
           all_arguments = scope.variables.each_value.select(&:block_argument?)
 
-          message << if scope.node.lambda?
+          message += if scope.node.lambda?
                        message_for_lambda(variable, all_arguments)
                      else
                        message_for_normal_block(variable, all_arguments)
@@ -69,7 +69,7 @@ module RuboCop
           message = message_for_underscore_prefix(variable)
 
           if all_arguments.none?(&:referenced?)
-            message << ' Also consider using a proc without arguments ' \
+            message += ' Also consider using a proc without arguments ' \
                        'instead of a lambda if you want it ' \
                         "to accept any arguments but don't care about them."
           end

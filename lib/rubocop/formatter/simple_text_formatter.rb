@@ -49,18 +49,18 @@ module RuboCop
 
       def report_summary(file_count, offense_count, correction_count)
         summary = pluralize(file_count, 'file')
-        summary << ' inspected, '
+        summary += ' inspected, '
 
         offenses_text = pluralize(offense_count, 'offense', no_for_zero: true)
-        offenses_text << ' detected'
-        summary << colorize(offenses_text, offense_count.zero? ? :green : :red)
+        offenses_text += ' detected'
+        summary += colorize(offenses_text, offense_count.zero? ? :green : :red)
 
         if correction_count > 0
-          summary << ', '
+          summary += ', '
           correction_text = pluralize(correction_count, 'offense')
-          correction_text << ' corrected'
+          correction_text += ' corrected'
           color = correction_count == offense_count ? :green : :cyan
-          summary << colorize(correction_text, color)
+          summary += colorize(correction_text, color)
         end
 
         output.puts
@@ -96,7 +96,7 @@ module RuboCop
 
       def message(offense)
         message = offense.corrected? ? green('[Corrected] ') : ''
-        message << annotate_message(offense.message)
+        "#{message}#{annotate_message(offense.message)}"
       end
     end
   end

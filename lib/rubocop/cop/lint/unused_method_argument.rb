@@ -31,7 +31,7 @@ module RuboCop
           message = "Unused method argument - `#{variable.name}`."
 
           unless variable.keyword_argument?
-            message << " If it's necessary, use `_` or `_#{variable.name}` " \
+            message += " If it's necessary, use `_` or `_#{variable.name}` " \
                        "as an argument name to indicate that it won't be used."
           end
 
@@ -39,7 +39,7 @@ module RuboCop
           all_arguments = scope.variables.each_value.select(&:method_argument?)
 
           if all_arguments.none?(&:referenced?)
-            message << " You can also write as `#{scope.name}(*)` " \
+            message += " You can also write as `#{scope.name}(*)` " \
                        'if you want the method to accept any arguments ' \
                        "but don't care about them."
           end
